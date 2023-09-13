@@ -43,4 +43,6 @@ mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.wallet/wall
 * [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
 * [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)  
 * [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)  
-* [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)  
+* [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+
+## User NetraDevLPDN peut modifier

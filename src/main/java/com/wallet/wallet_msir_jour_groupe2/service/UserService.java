@@ -3,6 +3,7 @@ package com.wallet.wallet_msir_jour_groupe2.service;
 import com.wallet.wallet_msir_jour_groupe2.domain.Compte;
 import com.wallet.wallet_msir_jour_groupe2.domain.Transaction;
 import com.wallet.wallet_msir_jour_groupe2.domain.User;
+import com.wallet.wallet_msir_jour_groupe2.model.TypeStatutCompte;
 import com.wallet.wallet_msir_jour_groupe2.model.UserDTO;
 import com.wallet.wallet_msir_jour_groupe2.repos.CompteRepository;
 import com.wallet.wallet_msir_jour_groupe2.repos.TransactionRepository;
@@ -41,11 +42,34 @@ public class UserService {
                 .orElseThrow(NotFoundException::new);
     }
 
+    /*
     public Long create(final UserDTO userDTO) {
         final User user = new User();
         mapToEntity(userDTO, user);
         return userRepository.save(user).getId();
     }
+    */
+
+    public Long create(final UserDTO userDTO) {
+        // Créez d'un compte avant l'utilisateur à qui il appartient
+        final Compte compte = new Compte();
+        compte.setSoldeCompte(0.0);
+        compte.setStatutCompte(TypeStatutCompte.ACTIF);
+        final Compte savedCompte = compteRepository.save(compte);
+
+        // Création de l'utilisateur
+        final User user = new User();
+        mapToEntity(userDTO, user);
+
+        // Liez le compte créé à l'utilisateur
+        user.setCompte(savedCompte);
+
+        // Enregistrez l'utilisateur
+        final User savedUser = userRepository.save(user);
+        return savedUser.getId();
+    }
+
+
 
     public void update(final Long id, final UserDTO userDTO) {
         final User user = userRepository.findById(id)
