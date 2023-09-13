@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{transaction.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{transaction.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/transactions/add}" th:text="#{transaction.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${transactions.empty}" th:text="#{transaction.list.empty}" />
+            <div th:if="${!transactions.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{transaction.id.label}" scope="col" />
+                            <th th:text="#{transaction.montantTransaction.label}" scope="col" />
+                            <th th:text="#{transaction.typeTransaction.label}" scope="col" />
+                            <th th:text="#{transaction.statutTransaction.label}" scope="col" />
+                            <th th:text="#{transaction.idReciver.label}" scope="col" />
+                            <th th:text="#{transaction.dateTransaction.label}" scope="col" />
+                            <th th:text="#{transaction.user.label}" scope="col" />
+                            <th th:text="#{transaction.compte.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="transaction : ${transactions}">
+                            <td th:text="${transaction.id}" />
+                            <td th:text="${transaction.montantTransaction}" />
+                            <td th:text="${transaction.typeTransaction}" />
+                            <td th:text="${transaction.statutTransaction}" />
+                            <td th:text="${transaction.idReciver}" />
+                            <td th:text="${transaction.dateTransaction}" />
+                            <td th:text="${transaction.user}" />
+                            <td th:text="${transaction.compte}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/transactions/edit/{id}(id=${transaction.id})}" th:text="#{transaction.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/transactions/delete/{id}(id=${transaction.id})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button th:text="#{transaction.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

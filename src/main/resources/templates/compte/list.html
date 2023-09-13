@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{compte.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{compte.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/comptes/add}" th:text="#{compte.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${comptes.empty}" th:text="#{compte.list.empty}" />
+            <div th:if="${!comptes.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{compte.id.label}" scope="col" />
+                            <th th:text="#{compte.soldeCompte.label}" scope="col" />
+                            <th th:text="#{compte.statutCompte.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="compte : ${comptes}">
+                            <td th:text="${compte.id}" />
+                            <td th:text="${compte.soldeCompte}" />
+                            <td th:text="${compte.statutCompte}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/comptes/edit/{id}(id=${compte.id})}" th:text="#{compte.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/comptes/delete/{id}(id=${compte.id})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button th:text="#{compte.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

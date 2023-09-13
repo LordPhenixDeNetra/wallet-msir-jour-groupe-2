@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{user.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{user.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/users/add}" th:text="#{user.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${users.empty}" th:text="#{user.list.empty}" />
+            <div th:if="${!users.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{user.id.label}" scope="col" />
+                            <th th:text="#{user.nomUser.label}" scope="col" />
+                            <th th:text="#{user.prenomUser.label}" scope="col" />
+                            <th th:text="#{user.typeUser.label}" scope="col" />
+                            <th th:text="#{user.telUser.label}" scope="col" />
+                            <th th:text="#{user.passwordUser.label}" scope="col" />
+                            <th th:text="#{user.avatarUser.label}" scope="col" />
+                            <th th:text="#{user.cinUser.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.id}" />
+                            <td th:text="${user.nomUser}" />
+                            <td th:text="${user.prenomUser}" />
+                            <td th:text="${user.typeUser}" />
+                            <td th:text="${user.telUser}" />
+                            <td th:text="${user.passwordUser}" />
+                            <td th:text="${user.avatarUser}" />
+                            <td th:text="${user.cinUser}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/users/edit/{id}(id=${user.id})}" th:text="#{user.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/users/delete/{id}(id=${user.id})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button th:text="#{user.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
