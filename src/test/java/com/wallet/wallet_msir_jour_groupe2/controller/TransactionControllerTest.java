@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TransactionControllerTest {
 
+    /*
     @Test
     void prepareContext() {
     }
@@ -33,4 +34,6 @@ class TransactionControllerTest {
     @Test
     void delete() {
     }
+
+     */
 }

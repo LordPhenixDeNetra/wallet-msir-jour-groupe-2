@@ -42,13 +42,6 @@ public class UserService {
                 .orElseThrow(NotFoundException::new);
     }
 
-    /*
-    public Long create(final UserDTO userDTO) {
-        final User user = new User();
-        mapToEntity(userDTO, user);
-        return userRepository.save(user).getId();
-    }
-    */
 
     public Long create(final UserDTO userDTO) {
         // Créez d'un compte avant l'utilisateur à qui il appartient
