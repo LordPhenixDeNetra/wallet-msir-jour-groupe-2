@@ -82,6 +82,7 @@ class UserServiceTest {
     void create() {
         // Création d'un DTO utilisateur
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(1L);
         userDTO.setNomUser("John");
         userDTO.setPrenomUser("Doe");
         userDTO.setTypeUser(TypeUser.valueOf("CUSTOMER"));
@@ -99,6 +100,8 @@ class UserServiceTest {
 
         // Appeler la méthode à tester
         Long userId = userService.create(userDTO);
+
+        userId = userDTO.getId();
 
         // Vérifier que l'ID renvoyé n'est pas nul
         assertNotNull(userId);

@@ -2,6 +2,7 @@ package com.wallet.wallet_msir_jour_groupe2.rest;
 
 import com.wallet.wallet_msir_jour_groupe2.model.CompteDTO;
 import com.wallet.wallet_msir_jour_groupe2.service.CompteService;
+import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 class CompteResourceTest {
 
-    /*
     @Mock
     private CompteService compteService;
 
@@ -30,11 +31,6 @@ class CompteResourceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
-     */
-
-
-    /*
     @Test
     void getAllComptes() {
         List<CompteDTO> comptes = new ArrayList<>();
@@ -48,9 +44,8 @@ class CompteResourceTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(comptes, responseEntity.getBody());
     }
-    */
 
-    /*
+
     @Test
     void getCompte() {
         Long id = 1L;
@@ -64,10 +59,8 @@ class CompteResourceTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(compteDTO, responseEntity.getBody());
     }
-    */
 
 
-    /*
     @Test
     void createCompte() {
         CompteDTO compteDTO = new CompteDTO();
@@ -80,9 +73,8 @@ class CompteResourceTest {
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(1L, responseEntity.getBody());
     }
-    */
 
-    /*
+
     @Test
     void createCompte_ValidationException() {
         CompteDTO compteDTO = new CompteDTO();
@@ -92,8 +84,7 @@ class CompteResourceTest {
 
         assertThrows(ValidationException.class, () -> compteResource.createCompte(compteDTO));
     }
-*/
-    /*
+
     @Test
     void updateCompte() {
         Long id = 1L;
@@ -105,9 +96,7 @@ class CompteResourceTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(id, responseEntity.getBody());
     }
-    */
 
-    /*
     @Test
     void deleteCompte() {
         Long id = 1L;
@@ -118,5 +107,5 @@ class CompteResourceTest {
         verify(compteService, times(1)).delete(id);
     }
 
-     */
+
 }
