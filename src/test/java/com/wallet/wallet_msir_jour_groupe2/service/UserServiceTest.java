@@ -101,7 +101,7 @@ class UserServiceTest {
         Long userId = userService.create(userDTO);
 
         // Vérifier que l'ID renvoyé n'est pas nul
-//        assertNotNull(userId);
+        assertNotNull(userId);
     }
 
 
