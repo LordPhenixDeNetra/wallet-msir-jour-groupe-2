@@ -1,4 +1,4 @@
-name: Analyse SonarQube et Envoi Email
+name: Wallet Groupe 2
 
 on:
     push:
