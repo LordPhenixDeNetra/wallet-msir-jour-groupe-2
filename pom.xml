@@ -108,7 +108,7 @@
                     http://localhost:9000
                 </sonar.host.url>
                 <sonar.login>admin</sonar.login>
-                <sonar.password>lpdn</sonar.password>
+                <sonar.password>Senemomo123</sonar.password>
             </properties>
         </profile>
     </profiles>
