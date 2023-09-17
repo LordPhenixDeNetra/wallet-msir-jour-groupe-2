@@ -28,7 +28,7 @@ public class TransactionService {
     }
 
     public List<TransactionDTO> findAll() {
-        final List<Transaction> transactions = transactionRepository.findAll(Sort.by("id"));
+        final List<Transaction> transactions = transactionRepository.findAll(/*Sort.by("id")*/);
         return transactions.stream()
                 .map(transaction -> mapToDTO(transaction, new TransactionDTO()))
                 .toList();
@@ -85,5 +85,11 @@ public class TransactionService {
         transaction.setCompte(compte);
         return transaction;
     }
+    /*
+    public List<Transaction> findAllTransaction()
+    {
+        List<Transaction> alltransaction=transactionRepository.findAllTransaction();
+        return  alltransaction;
+    }*/
 
 }
