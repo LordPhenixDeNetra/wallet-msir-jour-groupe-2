@@ -75,4 +75,19 @@ public class Transaction {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public Transaction(double montantTransaction, TypeTransaction typeTransaction, TypeStatutTransaction typeStatutTransaction, long idReciver, User user, Compte compte) {
+        this.montantTransaction=montantTransaction;
+        this.typeTransaction=typeTransaction;
+        this.statutTransaction=typeStatutTransaction;
+        this.idReciver=idReciver;
+        this.user=user;
+        this.compte= compte;
+        this.dateTransaction=OffsetDateTime.now();
+        this.dateCreated=OffsetDateTime.now();
+        this.lastUpdated=OffsetDateTime.now();
+    }
+
+    public Transaction() {
+
+    }
 }
