@@ -1,18 +1,8 @@
 package com.wallet.wallet_msir_jour_groupe2.domain;
 
 import com.wallet.wallet_msir_jour_groupe2.model.TypeStatutCompte;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
+
 import java.time.OffsetDateTime;
 import java.util.Set;
 import lombok.Getter;
@@ -49,8 +39,8 @@ public class Compte {
     @Enumerated(EnumType.STRING)
     private TypeStatutCompte statutCompte;
 
-    @OneToOne(mappedBy = "compte", fetch = FetchType.LAZY)
-    private User user;
+    /*@OneToOne(mappedBy = "compte", fetch = FetchType.LAZY)
+    private User user;*/
 
     @OneToMany(mappedBy = "compte")
     private Set<Transaction> transactions;
@@ -63,4 +53,15 @@ public class Compte {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public Compte(double soldeCompte, TypeStatutCompte statusCompte) {
+        this.soldeCompte=soldeCompte;
+        this.statutCompte=statusCompte;
+        //this.user= this.user;
+        this.dateCreated=OffsetDateTime.now();
+        this.lastUpdated=OffsetDateTime.now();
+    }
+
+    public Compte() {
+
+    }
 }

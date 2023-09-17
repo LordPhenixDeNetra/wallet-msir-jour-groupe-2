@@ -85,4 +85,17 @@ public class User {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public User( String nomUser, String prenomUser, TypeUser typeUser, String telUser, Compte compte) {
+        this.nomUser=nomUser;
+        this.prenomUser=prenomUser;
+        this.typeUser=typeUser;
+        this.telUser=telUser;
+        this.compte=compte;
+        this.dateCreated=OffsetDateTime.now();
+        this.lastUpdated=OffsetDateTime.now();
+    }
+
+    public User() {
+
+    }
 }
