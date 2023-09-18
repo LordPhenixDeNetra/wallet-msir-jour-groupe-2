@@ -43,11 +43,10 @@ public class UserService {
     }
 
 
-    public Long create(final UserDTO userDTO) {
+    public User create(final UserDTO userDTO) {
         // Créez d'un compte avant l'utilisateur à qui il appartient
-        final Compte compte = new Compte();
-        compte.setSoldeCompte(0.0);
-        compte.setStatutCompte(TypeStatutCompte.ACTIF);
+        final Compte compte = new Compte(0.0,TypeStatutCompte.ACTIF);
+
         final Compte savedCompte = compteRepository.save(compte);
 
         // Création de l'utilisateur
@@ -59,7 +58,7 @@ public class UserService {
 
         // Enregistrez l'utilisateur
         final User savedUser = userRepository.save(user);
-        return savedUser.getId();
+        return savedUser;
     }
 
 
