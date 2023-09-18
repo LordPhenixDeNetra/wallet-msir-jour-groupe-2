@@ -72,7 +72,7 @@ class CompteTest {
         Optional<Compte> c=compteRepository.findById(compte.getId());
         //here we update id of our compte and we do test for new. the actual id of compte is different to the previous
         compte.setId(10001L);
-        assertNotEquals(compte,c.get().getId());
+        assertNotEquals(compte.getId(),c.get().getId());
     }
 
     @Test
