@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -55,11 +56,12 @@ class TransactionServiceTest {
 
     @Test
     void get() {
-        /*Transaction t=new Transaction(1000.0, TypeTransaction.DEPOT, TypeStatutTransaction.REUSSITE,user.getId(),user,compte);
+        Transaction t=new Transaction(1000.0, TypeTransaction.DEPOT, TypeStatutTransaction.REUSSITE,user.getId(),user,compte);
         transactionRepository.save(t);
-        when(transactionRepository.findById(t.getId())).thenReturn(null);
+        Optional<Transaction> t2= Optional.of(new Transaction(1000.0, TypeTransaction.RETRAIT, TypeStatutTransaction.ANNULER,user.getId(),user,compte));
+        when(transactionRepository.findById(t.getId())).thenReturn(t2);
         TransactionDTO transactionDTO=transactionService.get(t.getId());
-        assertEquals(t.getId(),transactionDTO.getId());*/
+        assertEquals(t.getMontantTransaction(),transactionDTO.getMontantTransaction());
     }
 
     @Test
