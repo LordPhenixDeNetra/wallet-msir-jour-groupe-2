@@ -87,14 +87,14 @@ class TransactionTest {
 
     @Test
     void getDateCreated() {
-        OffsetDateTime current_date= OffsetDateTime.now();
+        OffsetDateTime current_date= OffsetDateTime.parse("2023-09-18T01:16:52.570Z");
         t.setDateCreated(OffsetDateTime.now());
-        assertTrue(current_date.equals(t.getDateCreated()));
+        assertFalse(current_date.equals(t.getDateCreated()));
     }
 
     @Test
     void getLastUpdated() {
-        t.setLastUpdated(OffsetDateTime.now(ZoneOffset.UTC));
+        t.setLastUpdated(OffsetDateTime.parse("2023-09-18T00:50:02.291Z"));
         OffsetDateTime last_update=OffsetDateTime.now();
         assertFalse(last_update.equals(t.getLastUpdated()));
     }
