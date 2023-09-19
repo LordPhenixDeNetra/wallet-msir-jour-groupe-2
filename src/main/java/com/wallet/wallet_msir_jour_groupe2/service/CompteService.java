@@ -30,7 +30,7 @@ public class CompteService {
     }
 
     public List<CompteDTO> findAll() {
-        final List<Compte> comptes = compteRepository.findAll(Sort.by("id"));
+        final List<Compte> comptes = compteRepository.findAll(/*Sort.by("id")*/);
         return comptes.stream()
                 .map(compte -> mapToDTO(compte, new CompteDTO()))
                 .toList();
