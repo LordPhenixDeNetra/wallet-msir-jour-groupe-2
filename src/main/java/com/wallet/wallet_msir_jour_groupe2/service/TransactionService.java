@@ -9,6 +9,8 @@ import com.wallet.wallet_msir_jour_groupe2.repos.TransactionRepository;
 import com.wallet.wallet_msir_jour_groupe2.repos.UserRepository;
 import com.wallet.wallet_msir_jour_groupe2.util.NotFoundException;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
