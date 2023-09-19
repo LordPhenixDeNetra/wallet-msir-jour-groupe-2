@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 class UserControllerTest {
 
-    /*
+
 
     @Mock
     private UserService userService;
@@ -68,7 +68,7 @@ class UserControllerTest {
         // Verify that the view name is "user/add"
         assertEquals("user/add", viewName);
     }
-    */
+
     /*
     @Test
     void testAdd() {
@@ -89,7 +89,7 @@ class UserControllerTest {
     }
     */
 
-    /*
+
     @Test
     void edit() {
         Long id = 1L;
@@ -101,7 +101,7 @@ class UserControllerTest {
         verify(model, times(1)).addAttribute(eq("user"), any());
         assertEquals("user/edit", viewName);
     }
-    */
+
     /*
     @Test
     void testEdit() {
