@@ -4,12 +4,16 @@ import com.wallet.wallet_msir_jour_groupe2.domain.Compte;
 import com.wallet.wallet_msir_jour_groupe2.model.CompteDTO;
 import com.wallet.wallet_msir_jour_groupe2.model.TypeStatutCompte;
 import com.wallet.wallet_msir_jour_groupe2.repos.CompteRepository;
+import com.wallet.wallet_msir_jour_groupe2.repos.TransactionRepository;
+import com.wallet.wallet_msir_jour_groupe2.repos.UserRepository;
 import com.wallet.wallet_msir_jour_groupe2.util.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +22,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest
 class CompteServiceTest {
 
     @Mock
@@ -25,10 +30,15 @@ class CompteServiceTest {
 
     @InjectMocks
     private CompteService compteService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        compteService=new CompteService(compteRepository,userRepository,transactionRepository);
     }
 
     /*
@@ -52,7 +62,24 @@ class CompteServiceTest {
     }
 
      */
-
+    @Test
+    void testFindAll() {
+        List<Compte> initSimulateCompte=List.of(
+                new Compte(1000.0,TypeStatutCompte.ACTIF),
+                new Compte(200.0,TypeStatutCompte.ACTIF));
+        when(compteRepository.findAll()).thenReturn(initSimulateCompte);
+        List<CompteDTO> allCompte=compteService.findAll();
+        assertEquals(initSimulateCompte.size(),allCompte.size());
+    }
+    @Test
+    void testupdat()
+    {
+        Compte compte=new Compte(50000.0,TypeStatutCompte.ACTIF);
+        compteRepository.save(compte);
+        when(compteRepository.findById(compte.getId())).thenReturn(Optional.of(compte));
+        CompteDTO compteDTO=compteService.get(compte.getId());
+        compteService.update(compte.getId(),compteDTO);
+    }
     @Test
     void testGetExistingCompte() {
         Long accountId = 1L;
