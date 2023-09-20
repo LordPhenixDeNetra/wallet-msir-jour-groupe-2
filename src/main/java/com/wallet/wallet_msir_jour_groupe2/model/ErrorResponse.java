@@ -13,5 +13,16 @@ public class ErrorResponse {
     private String exception;
     private String message;
     private List<FieldError> fieldErrors;
+    public ErrorResponse(Integer httpStatus,String exception,String message, List<FieldError> fieldErrors)
+    {
+        this.httpStatus=httpStatus;
+        this.exception=exception;
+        this.message=message;
+        this.fieldErrors=fieldErrors;
+    }
+    public ErrorResponse()
+    {
+
+    }
 
 }
