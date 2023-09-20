@@ -11,4 +11,13 @@ public class FieldError {
     private String field;
     private String errorCode;
 
+    public FieldError(String field, String errorCode)
+    {
+        this.field=field;
+        this.errorCode=errorCode;
+    }
+    public FieldError()
+    {
+
+    }
 }
