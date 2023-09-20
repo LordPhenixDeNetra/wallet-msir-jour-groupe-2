@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.OffsetDateTime;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -75,7 +76,7 @@ class UserTest {
 
     @Test
     void setPrenomUser() {
-        user.setPrenomUser("Ahmadou Bamba");
+        user.setLastUpdated(OffsetDateTime.now());
         assertNotEquals("Mamadou",user.getNomUser());
     }
 
@@ -108,5 +109,12 @@ class UserTest {
         user.setCompte(c);
         assertNull(user.getCompte());
 
+    }
+    @Test
+    void setDatecreated()
+    {
+        user.setDateCreated(OffsetDateTime.now());
+        user.setLastUpdated(OffsetDateTime.now());
+        assertEquals(user.getDateCreated(),user.getLastUpdated());
     }
 }
