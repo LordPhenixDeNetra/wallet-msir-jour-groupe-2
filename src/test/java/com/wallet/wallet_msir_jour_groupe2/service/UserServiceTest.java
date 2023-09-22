@@ -33,12 +33,11 @@ class UserServiceTest {
 
     @Mock
     private CompteRepository compteRepository;
+    @Mock
+    TransactionRepository transactionRepository;
 
     @InjectMocks
     private UserService userService;
-
-    @Mock
-    private TransactionRepository transactionRepository;
 
     @BeforeEach
     void setUp() {
@@ -162,29 +161,20 @@ class UserServiceTest {
         assertTrue(exists);
     }
 
-    /*
-    @Test
-    void getReferencedWarning() {
-        // ID de l'utilisateur pour lequel vérifier les références
-        Long userId = 1L;
-
-        // Simuler la récupération de l'utilisateur depuis la base de données
-        User user = new User();
-        user.setId(userId);
-        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
-
-        // Simuler une transaction liée à cet utilisateur
-        Transaction userTransaction = new Transaction();
-        userTransaction.setId(1L);
-        when(transactionRepository.findFirstByUser(user)).thenReturn(userTransaction);
-
-
-        // Appeler la méthode à tester
-        String warning = userService.getReferencedWarning(userId);
-
-        // Vérifier que le message de l'avertissement contient l'ID de la transaction
-        assertTrue(warning.contains(userTransaction.getId().toString()));
-    }
-
-     */
+   @Test
+    void getReferencedWarning()
+   {
+       Long idUser=2L;
+       Long idTransaction=5L;
+       User user=new User();
+       user.setId(idUser);
+       Transaction transaction=new Transaction();
+       transaction.setId(idTransaction);
+       transaction.setUser(user);
+       when(userRepository.findById(idUser)).thenReturn(Optional.of(user));
+       when(transactionRepository.findFirstByUser(user)).thenReturn(transaction);
+       String userTransaction=userService.getReferencedWarning(idUser);
+       //here we verify that warning message is very correct, me in gambian english (laugh)
+       assertEquals(WebUtils.getMessage("user.transaction.user.referenced", transaction.getId()),userTransaction);
+   }
 }
