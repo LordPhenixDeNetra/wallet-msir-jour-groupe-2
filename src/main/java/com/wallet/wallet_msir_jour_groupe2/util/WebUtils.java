@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.LocaleResolver;
+import static java.util.Objects.requireNonNull;
 
 
 @Component
@@ -23,13 +24,13 @@ public class WebUtils {
         WebUtils.messageSource = messageSource;
         WebUtils.localeResolver = localeResolver;
     }
-
     public static HttpServletRequest getRequest() {
-        return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+        return ((ServletRequestAttributes) requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
     }
 
     public static String getMessage(final String code, final Object... args) {
-        return messageSource.getMessage(code, args, code, localeResolver.resolveLocale(getRequest()));
+       // return messageSource.getMessage(code, args, code, localeResolver.resolveLocale(getRequest()));
+        return WebUtils.MSG_SUCCESS;
     }
 
     @SneakyThrows
