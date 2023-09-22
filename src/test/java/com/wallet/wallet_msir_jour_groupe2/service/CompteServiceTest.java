@@ -30,9 +30,9 @@ class CompteServiceTest {
 
     @InjectMocks
     private CompteService compteService;
-    @Autowired
+   @Mock
     private UserRepository userRepository;
-    @Autowired
+    @Mock
     private TransactionRepository transactionRepository;
 
     @BeforeEach
@@ -75,7 +75,6 @@ class CompteServiceTest {
     void testupdat()
     {
         Compte compte=new Compte(50000.0,TypeStatutCompte.ACTIF);
-        compteRepository.save(compte);
         when(compteRepository.findById(compte.getId())).thenReturn(Optional.of(compte));
         CompteDTO compteDTO=compteService.get(compte.getId());
         compteService.update(compte.getId(),compteDTO);
