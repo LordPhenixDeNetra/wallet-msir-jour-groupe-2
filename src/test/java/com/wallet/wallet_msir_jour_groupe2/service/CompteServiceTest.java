@@ -1,12 +1,14 @@
 package com.wallet.wallet_msir_jour_groupe2.service;
 
 import com.wallet.wallet_msir_jour_groupe2.domain.Compte;
+import com.wallet.wallet_msir_jour_groupe2.domain.User;
 import com.wallet.wallet_msir_jour_groupe2.model.CompteDTO;
 import com.wallet.wallet_msir_jour_groupe2.model.TypeStatutCompte;
 import com.wallet.wallet_msir_jour_groupe2.repos.CompteRepository;
 import com.wallet.wallet_msir_jour_groupe2.repos.TransactionRepository;
 import com.wallet.wallet_msir_jour_groupe2.repos.UserRepository;
 import com.wallet.wallet_msir_jour_groupe2.util.NotFoundException;
+import com.wallet.wallet_msir_jour_groupe2.util.WebUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,9 +32,9 @@ class CompteServiceTest {
 
     @InjectMocks
     private CompteService compteService;
-    @Autowired
+   @Mock
     private UserRepository userRepository;
-    @Autowired
+    @Mock
     private TransactionRepository transactionRepository;
 
     @BeforeEach
@@ -75,7 +77,6 @@ class CompteServiceTest {
     void testupdat()
     {
         Compte compte=new Compte(50000.0,TypeStatutCompte.ACTIF);
-        compteRepository.save(compte);
         when(compteRepository.findById(compte.getId())).thenReturn(Optional.of(compte));
         CompteDTO compteDTO=compteService.get(compte.getId());
         compteService.update(compte.getId(),compteDTO);
@@ -167,6 +168,22 @@ class CompteServiceTest {
         });
 
         verify(compteRepository, times(1)).deleteById(accountId);
+    }
+    @Test
+    void getReferencedWarning()
+    {
+        Long idCompte=3L;
+        Long idUser=5L;
+        Compte compte=new Compte();
+        compte.setId(idCompte);
+        User user=new User();
+        user.setId(idUser);
+        when(compteRepository.findById(idCompte)).thenReturn(Optional.of(compte));
+        when(userRepository.findFirstByCompte(compte)).thenReturn(user);
+        String warning=compteService.getReferencedWarning(idCompte);
+        // Vérifier que le message d'avertissement est correct
+        assertEquals(WebUtils.getMessage("compte.user.compte.referenced", user.getId()), warning);
+
     }
 
 }

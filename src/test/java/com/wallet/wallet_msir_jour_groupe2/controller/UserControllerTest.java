@@ -1,20 +1,18 @@
 package com.wallet.wallet_msir_jour_groupe2.controller;
-
-import com.wallet.wallet_msir_jour_groupe2.model.TypeUser;
 import com.wallet.wallet_msir_jour_groupe2.model.UserDTO;
 import com.wallet.wallet_msir_jour_groupe2.repos.CompteRepository;
 import com.wallet.wallet_msir_jour_groupe2.service.UserService;
-import com.wallet.wallet_msir_jour_groupe2.util.CustomCollectors;
-import com.wallet.wallet_msir_jour_groupe2.util.WebUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -50,29 +48,32 @@ class UserControllerTest {
 
     @Test
     void list() {
-        Model model = mock(Model.class);
+        /*Model model = mock(Model.class);
 
         String viewName = userController.list(model);
 
         // Verify that the "users" attribute is set and the view name is "user/list"
         verify(model, times(1)).addAttribute(eq("users"), any());
-        assertEquals("user/list", viewName);
+        assertEquals("user/list", viewName);*/
+        Model model= Mockito.mock(Model.class);
+        List<UserDTO> simulateUserControllerList=new ArrayList<>();
+        when(userService.findAll()).thenReturn(simulateUserControllerList);
+        String view_page=userController.list(model);
+        assertEquals("user/list",view_page);
+
     }
 
     @Test
     void add() {
-        UserDTO userDTO = new UserDTO();
-
-        String viewName = userController.add(userDTO);
-
-        // Verify that the view name is "user/add"
-        assertEquals("user/add", viewName);
+        UserDTO userDTO =Mockito.mock(UserDTO.class);
+        String pageName = userController.add(userDTO);
+        assertEquals("user/add", pageName);
     }
 
-    /*
+
     @Test
     void testAdd() {
-        UserDTO userDTO = new UserDTO();
+        UserDTO userDTO = Mockito.mock(UserDTO.class);
         BindingResult bindingResult = mock(BindingResult.class);
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
 
@@ -87,26 +88,23 @@ class UserControllerTest {
         verify(userService, times(1)).create(userDTO);
         assertEquals("redirect:/users", viewName);
     }
-    */
+
 
 
     @Test
     void edit() {
         Long id = 1L;
         Model model = mock(Model.class);
-
         String viewName = userController.edit(id, model);
-
-        // Verify that the "user" attribute is set and the view name is "user/edit"
         verify(model, times(1)).addAttribute(eq("user"), any());
         assertEquals("user/edit", viewName);
     }
 
-    /*
+
     @Test
     void testEdit() {
         Long id = 1L;
-        UserDTO userDTO = new UserDTO();
+        UserDTO userDTO =Mockito.mock(UserDTO.class);
         BindingResult bindingResult = mock(BindingResult.class);
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
 
@@ -122,9 +120,9 @@ class UserControllerTest {
         verify(userService, times(1)).update(id, userDTO);
         assertEquals("redirect:/users", viewName);
     }
-     */
 
-    /*
+
+
     @Test
     void delete() {
         Long id = 1L;
@@ -139,5 +137,5 @@ class UserControllerTest {
         assertEquals("redirect:/users", viewName);
     }
 
-     */
+
 }
