@@ -16,6 +16,9 @@ EXPOSE 8088
 # Commande pour exécuter votre application Spring Boot lorsque le conteneur démarre
 CMD ["java", "-jar", "app.jar"]
 
+
+#deployement de l'application sur docker (en creant un conteneur docker)
+
 #Ajouter un dockerFile dans notre projet
 #docker build -t tp-docker . contruction de l'image docker de l'application Spring boot
 #docker run  -p 8080:8080 tp-docker Execution du conteneur docker de l'application
