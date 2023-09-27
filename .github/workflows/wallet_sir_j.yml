@@ -45,7 +45,7 @@ jobs:
         echo "L'analyse a réussi. Aucune action supplémentaire n'est requise."
         echo "URL du Build: ${{ github.run_url }}"
       env:
-        RECIPIENT_EMAIL: "netrathior@gmail.com,moussa3.thior@ucad.edu.sn,netrathiorpa@gmail.com"
+        RECIPIENT_EMAIL: "netrathior@gmail.com,fayemodou901@gmail.com,netrathiorpa@gmail.com"
       # Ajoutez la logique pour envoyer une notification par e-mail en cas de succès
 
     - name: Envoyer un Email en cas d'Échec
@@ -54,5 +54,5 @@ jobs:
         echo "L'analyse a échoué. Veuillez enquêter et prendre les mesures nécessaires."
         echo "URL du Build: ${{ github.run_url }}"
       env:
-        RECIPIENT_EMAIL: "netrathior@gmail.com,moussa3.thior@ucad.edu.sn,netrathiorpa@gmail.com"
+        RECIPIENT_EMAIL: "netrathior@gmail.com,fayemodou901@gmail.com,netrathiorpa@gmail.com"
       # Ajoutez la logique pour envoyer une notification par e-mail en cas d'échec
