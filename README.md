@@ -14,7 +14,7 @@ added in the VM options of the Run Configuration after enabling this property in
 Lombok must be supported by your IDE. For IntelliJ install the Lombok plugin and enable annotation processing -
 [learn more](https://bootify.io/next-steps/spring-boot-with-lombok.html).
 
-After starting the application it is accessible under `localhost:8080`.
+After starting the application it is accessible under `localhost:8088`.
 
 ## Build
 
@@ -37,6 +37,15 @@ environment variable when running the container.
 mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.wallet/wallet-msir-jour-groupe2
 ```
 
+## Some images regarding the application
+
+![Code coverage with SonarQube](src/main/resources/static/images/W1.png)
+![Build the pipeline with Jenkins](src/main/resources/static/images/W2.png)
+![App Swagger](src/main/resources/static/images/W4.png)
+![Testing the API with Postman](src/main/resources/static/images/Capture_3.png)
+![Testing the API with Postman](src/main/resources/static/images/Capture_4.png)
+![Integration of PostgreSQL with PgAdmin](src/main/resources/static/images/PostgreSQL_PgAdmin.jpeg)
+
 ## Further readings
 
 * [Maven docs](https://maven.apache.org/guides/index.html)  
@@ -45,5 +54,3 @@ mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.wallet/wall
 * [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)  
 * [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
-## User NetraDevLPDN peut modifier
-## modification de momo
