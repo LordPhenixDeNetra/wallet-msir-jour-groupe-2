@@ -1,0 +1,40 @@
+version: '3.1'
+services:
+  postgres_db:
+    image: 'postgres:latest'
+    container_name: 'postgres_container'
+    environment:
+      - 'POSTGRES_DB=wallet_db'
+      - 'POSTGRES_PASSWORD=1234'
+      - 'POSTGRES_USER=momo'
+    ports:
+      - '5432'
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    container_name: 'pg_admin_container'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: senemamadou1999@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 'Senemomo'
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - '5050:5050'
+
+
+      #on cree une image de notre application dans docker, on deploie ensuite notre application avec les bonnes
+      #informations renseignées sur le dockerFile et enfin on crée le service de notre application avec les
+      #info ci dessous.
+  spring-app:
+    image: wallet_msir_jour_groupe2:latest
+    container_name: wallet_container
+    #environment:
+     # SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/wallet_db
+      #SPRING_USERNAME: momo
+      #SPRING_PASSWORD: 1234
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8088:8088'
+    depends_on:
+      - postgres_db
