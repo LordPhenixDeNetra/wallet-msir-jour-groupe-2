@@ -54,3 +54,11 @@ mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.wallet/wall
 * [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)  
 * [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
+# Project presented by group 2 composed by:
+### Moussa THIOR
+### Mamadou SENE
+### Couly Faye
+### Ndeye Khady SY
+
+# Diadieuf👍😁
+
