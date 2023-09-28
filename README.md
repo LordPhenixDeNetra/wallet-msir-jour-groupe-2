@@ -60,5 +60,5 @@ mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.wallet/wall
 ### Couly Faye
 ### Ndeye Khady SY
 
-# Diadieuf👍😁
+# Diadieuf. 👍😁
 
