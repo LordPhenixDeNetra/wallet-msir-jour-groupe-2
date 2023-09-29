@@ -43,7 +43,7 @@ mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.wallet/wall
 ![Build the pipeline with Jenkins](src/main/resources/static/images/W2.png)
 ![App Swagger](src/main/resources/static/images/W4.png)
 ![Testing the API with Postman](src/main/resources/static/images/Capture_3.png)
-![Testing the API with Postman](src/main/resources/static/images/Capture_4.png)
+![Testing the API with Postman](src/main/resources/static/images/Capture_5.png)
 ![Integration of PostgreSQL with PgAdmin](src/main/resources/static/images/PostgreSQL_PgAdmin.jpeg)
 
 ## Further readings
